@@ -1,0 +1,55 @@
+<div class="container" >
+    <div class="row">
+        <h2>Students</h2>
+        <hr/>
+    </div>
+
+    <div class="row" *ngFor="let student of studentList; let i=index;">
+        <div class="col">
+          <img src="assets/academic.png" style="width: 70px;">
+        </div>
+        <div class="col">
+            <div class="row">
+                {{student.firstname}}
+            </div>
+            <div class="row">
+                {{student.email}}
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                {{student.contact}}
+            </div>
+            <div class="row">
+                {{student.dob}}
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="row">
+                {{student.board}}
+            </div>
+            <div class="row">
+                {{student.address}}
+            </div>
+        </div>
+        <a>SSC</a>
+        <div class="col" 
+        *ngFor="let res of student.ssc"
+        >
+            <div class="row">
+                {{res.subject}}-GPA {{res.gpa}}
+            </div>
+        </div>
+
+        <a>HSC</a>
+        <div class="col" 
+        *ngFor="let res of student.hsc"
+        >
+            <div class="row">
+                {{res.subject}} - GPA {{res.gpa}}
+            </div>
+        </div>
+        <hr style="margin-top: 5px;"/>
+    </div>
+</div>

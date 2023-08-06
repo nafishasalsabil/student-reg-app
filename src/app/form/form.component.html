@@ -1,0 +1,189 @@
+  <div class="container my-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <!-- <h1 class="mb-3">Register</h1> -->
+          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+            <div class="row g-3">
+              <h3>Student Information</h3>
+              <hr/>
+              <div class="col-md-6">
+                <label for="firstname" class="form-label" >
+                  <span *ngIf = "!signUpForm.get('firstname')?.valid && signUpForm.get('firstname')?.touched" style="color: red;">*</span>First Name</label>
+                <input type="text" class="form-control" id="firstname" 
+                placeholder="Enter first name"
+                formControlName="firstname">
+              </div>
+            
+              <div class="col-md-6">
+                <label for="lastname" class="form-label">Last Name</label>
+                <span *ngIf = "!signUpForm.get('lastname')?.valid && signUpForm.get('lastname')?.touched" style="color: red;">*</span>
+                <input type="text" class="form-control" id="lastname"
+                placeholder="Enter last name"
+                formControlName="lastname">
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" 
+                placeholder="Enter your e-mail"
+                formControlName="email">
+                <span
+                *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched"
+                class="help-block" style="color: red;">Please enter a valid email!</span>
+              </div>
+              <div class="col-md-6">
+                <label for="dob" class="form-label">
+                  <span *ngIf = "!signUpForm.get('dob')?.valid && signUpForm.get('dob')?.touched" style="color: red;">*</span>
+                  Date of Birth</label>
+                <input type="date" class="form-control"
+                id="dob" formControlName="dob">
+              </div>
+              <div class="col-md-6">
+                  <label for="board" class="form-label">Board
+                    <span *ngIf = "!signUpForm.get('board')?.valid && signUpForm.get('board')?.touched" style="color: red;">*</span>
+                  </label>
+                  <select class="form-control" id="board" formControlName="board" style="padding: 10px;">
+                    <option value="">-- Select Board -- </option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="CTG">CTG</option>
+                    <option value="Khulna">Khulna</option>
+                  
+                </select>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="contact" class="form-label">Contact</label>
+                  <input type="tel" class="form-control" id="contact" 
+                  pattern="^(?:\+?88)?01[15-9]\d{8}$"
+                  placeholder="Enter your number"
+                  formControlName="contact">
+                  <span
+                  *ngIf="!signUpForm.get('contact')?.valid && signUpForm.get('contact')?.touched"
+                  class="help-block">Please enter a valid number!</span>
+                </div>
+
+                <div class="col-12">
+                  <label for="address" class="form-label">
+                    <span *ngIf = "!signUpForm.get('address')?.valid && signUpForm.get('address')?.touched" style="color: red;">*</span>
+                    Address</label>
+                
+                  <input type="text" class="form-control" id="address" 
+                  formControlName="address"
+                  placeholder="Enter your address">
+                </div>
+          <!-- ---------------------------------------SSC------------------------------------- -->
+                <div  formArrayName="ssc">
+                  <div class="d-flex main justify-content-between">
+                  <label  class="m-2">SSC</label>
+                    <img class="m-2" src="assets/add.png" style="width: 25px;" (click)="onAddSubjectOfSSC()">
+                </div>
+            <div class="form-group"
+              *ngFor="let sscControl of formDataSSC.controls; let i=index"
+              formGroupName="{{i}}"> 
+              <div class="row" style="margin-top: 5px;">
+                <div class="col-md-6">
+                  <select class="form-control" style="padding: 10px;"  formControlName="subject">
+                      <option value="">-- Select Subject -- </option>
+                      <option value="Math">Math</option>
+                      <option value="English">English</option>
+                      <option value="Physics">Physics</option>
+                      <option value="Chemistry">Chemistry</option>
+                  </select>
+                </div>
+              
+                <div class="col-md-5">
+                  <select class="form-control" style="padding: 10px;" formControlName="gpa">
+                    <option value="">-- Select GPA -- </option>
+                    <option value="5.00">5.00</option>
+                    <option value="4.50">4.50</option>
+                    <option value="4.00">4.00</option>
+                    <option value="3.50">3.50</option>
+                </select>
+                </div>
+                <img class="m-2" src="assets/rem.png" style="width: 54px;" (click)="removeSSC(i)">
+              </div>
+              </div>
+            </div>
+
+              <!-- ---------------------------------------HSC------------------------------------- -->
+
+            <div  formArrayName="hsc">
+              <div class="d-flex main justify-content-between">
+              <label  class="m-2">HSC</label>
+                <img class="m-2" src="assets/add.png" style="width: 25px;" (click)="onAddSubjectOfHSC()">
+            </div>
+        <div class="form-group"
+          *ngFor="let hscControl of formDataHSC.controls; let i=index"
+          formGroupName="{{i}}"> 
+          <div class="row" style="margin-top: 5px;">
+            
+            <div class="col-md-6">
+              <select class="form-control" style="padding: 10px;"  formControlName="subject">
+                <option value="">-- Select Subject -- </option>
+                <option value="Math">Math</option>
+                <option value="English">English</option>
+                <option value="Physics">Physics</option>
+                <option value="Chemistry">Chemistry</option>
+            </select>
+            </div>
+          
+            <div class="col-md-5">
+              <select class="form-control"  formControlName="gpa" id="gpa" style="padding: 10px;">
+                <option value="">-- Select GPA -- </option>
+                <option value="5.00">5.00</option>
+                <option value="4.50">4.50</option>
+                <option value="4.00">4.00</option>
+                <option value="3.50">3.50</option>
+            </select>
+            </div>
+            <img class="m-2" src="assets/rem.png" style="width: 54px;" (click)="removeHSC(i)">
+          </div>
+          </div>
+        </div>
+
+                <!-- <div class="d-flex main justify-content-between">
+                  <label  class="m-2">HSC</label>
+                  <img class="m-2" src="assets/add.png" style="width: 25px;">
+              </div>
+
+              <div class="col-md-6">
+                <select class="form-control" id="result1" formControlName="result1" style="padding: 10px;">
+                    <option value="">-- Select Subject -- </option>
+                    <option value="5.00">5.00</option>
+                    <option value="4.50">4.50</option>
+                    <option value="4.00">4.00</option>
+                    <option value="3.50">3.50</option>
+                </select>
+              </div>
+            
+              <div class="col-md-6">
+                <select class="form-control" id="result2" formControlName="result2" style="padding: 10px;">
+                  <option value="">-- Select GPA -- </option>
+                  <option value="5.00">5.00</option>
+                  <option value="4.50">4.50</option>
+                  <option value="4.00">4.00</option>
+                  <option value="3.50">3.50</option>
+              </select>
+              </div> -->
+
+
+
+              
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-12">
+                    <button type="submit"
+                    class="btn w-100 fw-bold" 
+                    [disabled]="signUpForm.invalid"
+                    (click)="onAddToList()" 
+                    routerLink="/students"
+                    style="background-color: #6460D1; color: white;"
+                    >Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    

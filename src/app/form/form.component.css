@@ -1,0 +1,7 @@
+.btn.btn-dark.w-100.fw-bold{
+    width: 100%;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
