@@ -1,55 +1,70 @@
 <div class="container" >
     <div class="row">
-        <h2>Students</h2>
-        <hr/>
+        <h2>Registered Students
+            <img class="m-2" src="assets/add.png" routerLink="/register" style="width: 25px; float:right;">
+        </h2>
+        <hr style="color: #807dd7;" />
+    </div>
+    <div class="info-container" *ngFor="let student of studentList; let i=index;">                
+                <!-- Student Info -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+        <div class="col">
+            <img src="assets/graduate.png" style="width: 70px;">
+        </div>
+        <div class="col">
+            <div class="row">
+                Name: {{student.firstName}} {{student.lastName}}
+            </div>
+            <div class="row">
+                Email: {{student.email}}
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <!-- Contact: {{student.contact}} -->
+                Contact: {{student.dob}}
+            </div>
+            <div class="row">
+                Date of Birth: {{student.dob}}
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="row">
+                Board: {{student.board}}
+            </div>
+            <div class="row">
+                Address: {{student.address}}
+            </div>
+        </div>
+        </div>
+
+                                     <!-- Student RESULT -->
+
+        <div class="row">
+            <label style="margin-top: 5px;"><b>Secondary School Certificate</b></label>
+            <hr style="color: #6460D1; margin-top: 5px;" />
+        </div>
+        <div class="row row-cols-3" >
+            <div class="col" *ngFor="let res of student.ssc">
+                {{res.subject}} : Grade {{res.gpa}}
+            </div>
+        </div>
+
+        <div class="row">
+            <label style="margin-top: 5px;"><b>Higher Secondary School Certificate</b></label>
+            <hr style="color: #6460D1; margin-top: 5px;" />
+        </div>
+
+
+        <div class="row row-cols-3" >
+            <div class="col" *ngFor="let res of student.hsc">
+                {{res.subject}} : Grade {{res.gpa}}
+            </div>
+        </div>
+
+        <!-- <hr style="margin-top: 5px;"/> -->
     </div>
 
-    <div class="row" *ngFor="let student of studentList; let i=index;">
-        <div class="col">
-          <img src="assets/academic.png" style="width: 70px;">
-        </div>
-        <div class="col">
-            <div class="row">
-                {{student.firstname}}
-            </div>
-            <div class="row">
-                {{student.email}}
-            </div>
-        </div>
-        <div class="col">
-            <div class="row">
-                {{student.contact}}
-            </div>
-            <div class="row">
-                {{student.dob}}
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="row">
-                {{student.board}}
-            </div>
-            <div class="row">
-                {{student.address}}
-            </div>
-        </div>
-        <a>SSC</a>
-        <div class="col" 
-        *ngFor="let res of student.ssc"
-        >
-            <div class="row">
-                {{res.subject}}-GPA {{res.gpa}}
-            </div>
-        </div>
-
-        <a>HSC</a>
-        <div class="col" 
-        *ngFor="let res of student.hsc"
-        >
-            <div class="row">
-                {{res.subject}} - GPA {{res.gpa}}
-            </div>
-        </div>
-        <hr style="margin-top: 5px;"/>
-    </div>
+    
 </div>

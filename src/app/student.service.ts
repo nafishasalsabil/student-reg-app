@@ -1,30 +1,36 @@
 import { EventEmitter, Injectable } from "@angular/core";
-import { Student } from "./shared/student.model";
 import { HttpClient } from "@angular/common/http";
 import { FormGroup } from "@angular/forms";
 import { Subject } from "rxjs";
+import { Degree } from "./shared/degree.model";
+import { Student } from "./shared/student.model";
 @Injectable()
 export class StudentService{
   studentsChanged = new Subject<Student[]>();
   student:any;
-    private students: Student[] = [
-      
+    private students: Student[]=[
       // {
-      //   firstname:'zahir',
-      //   lastname:'shozib',
+      //   firstName:'nafisha',
+      //   lastName:'salsabil',
       //   email:'abc@gmail.com',
-      //   dob:'7/9/23',
-      //   board:'dhaka',
-      //   contact:'016756584983',
-      //   address:'afsgsgs',
-
-    
+      //   dob:'12/2/2034',
+      //   board:'Dhaka',
+      //   contact:'01556384933',
+      //   address:'mirpur',
+      //   ssc:[{
+      //     subject:'math',
+      //     gpa:'4.77'
+      //   }],
+      //   hsc:[
+      //     {
+      //       subject:'math',
+      //       gpa:'4.77'
+      //     }
+      //   ]
       // }
-        //new Student('Zahir','shozib','m00@gmail.com','gsgs','eaaaa','fagag','gaggag','4.00','5.00'),
-      //  new Student('shozib','zsd','m00@gmail.com','gsgs','eaaaa','fagag','gaggag','4.00','2.00')
+    ]
+    
       
-    ];
-
     constructor() {}
 
       getStudentlist(){
@@ -36,6 +42,9 @@ export class StudentService{
         this.studentsChanged.next(this.students)
 
       }
+      // getLogin(status:boolean){
+      //   return status;
+      // }
 
 
 

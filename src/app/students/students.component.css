@@ -1,0 +1,17 @@
+/* div#st{
+    background-color: white;
+    border: 1px white;
+    border-radius: 20px;
+} */
+
+.info-container {
+    background-color: #f5f4ff;
+    border: 1px white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 15px;
+}
+
+.stu{
+    margin-left: 5px;
+}

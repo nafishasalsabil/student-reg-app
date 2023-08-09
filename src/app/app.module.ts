@@ -10,6 +10,8 @@ import { StudentsComponent } from './students/students.component';
 import { StudentService } from './student.service';
 import {HttpClientModule} from '@angular/common/http'
 import { LoginComponent } from './login/login.component';
+import { RegistrationService } from './form/registrationService/registration.service';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [StudentService],
+  providers: [StudentService,RegistrationService,LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
