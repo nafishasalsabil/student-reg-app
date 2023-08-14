@@ -32,6 +32,7 @@
     color: #6460D1;
     background-color: #fff;
     border-color: #6460D1;
+    font-size: 14px;
    
   }
   .btn:hover {
@@ -44,3 +45,4 @@
     background-color: #6460D1;
     color: #fff;
   }
+  

@@ -1,51 +1,55 @@
-import { EventEmitter, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { FormGroup } from "@angular/forms";
-import { Subject } from "rxjs";
-import { Degree } from "./shared/degree.model";
-import { Student } from "./shared/student.model";
+import { EventEmitter, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { Degree } from './shared/degree.model';
+import { Student } from './shared/student.model';
+import { environment } from 'environments/environment';
 @Injectable()
-export class StudentService{
+export class StudentService {
   studentsChanged = new Subject<Student[]>();
-  student:any;
-    private students: Student[]=[
-      // {
-      //   firstName:'nafisha',
-      //   lastName:'salsabil',
-      //   email:'abc@gmail.com',
-      //   dob:'12/2/2034',
-      //   board:'Dhaka',
-      //   contact:'01556384933',
-      //   address:'mirpur',
-      //   ssc:[{
-      //     subject:'math',
-      //     gpa:'4.77'
-      //   }],
-      //   hsc:[
-      //     {
-      //       subject:'math',
-      //       gpa:'4.77'
-      //     }
-      //   ]
-      // }
-    ]
-    
-      
-    constructor() {}
+  student: any;
+  private students: Student[] = [
+    // {
+    //   firstName:'nafisha',
+    //   lastName:'salsabil',
+    //   email:'abc@gmail.com',
+    //   dob:'12/2/2034',
+    //   board:'Dhaka',
+    //   contact:'01556384933',
+    //   address:'mirpur',
+    //   ssc:[{
+    //     subject:'math',
+    //     gpa:'4.77'
+    //   }],
+    //   hsc:[
+    //     {
+    //       subject:'math',
+    //       gpa:'4.77'
+    //     }
+    //   ]
+    // }
+  ];
 
-      getStudentlist(){
-        return this.students;
-      }      
+  constructor(private httpClient: HttpClient) {}
 
-      addStudent(student:any){
-        this.students.push(student)
-        this.studentsChanged.next(this.students)
+  getStudentlist() {
+    return this.students;
+  }
 
-      }
-      // getLogin(status:boolean){
-      //   return status;
-      // }
+  addStudent(student: any) {
+    this.students.push(student);
+    this.studentsChanged.next(this.students);
+  }
 
+  showStudents() {
+    return this.httpClient.get<any>(`${environment.API_URL}/students`);
+  }
 
-
+  deleteStudent(id: any) {
+    return this.httpClient.delete(`${environment.API_URL}/delete/${id}`);
+  }
+  editStudent(id: any) {
+    return id;
+  }
 }

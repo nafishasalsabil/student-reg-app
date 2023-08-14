@@ -1,3 +1,11 @@
 input.ng-invalid.ng-touched{
     border: 1px solid red;
 }
+
+.help-block{
+    color: red;
+}
+.btn{
+    background-color: #6460D1; 
+    color: white;
+}

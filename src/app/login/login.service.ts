@@ -10,5 +10,9 @@ export class LoginService {
     return this.httpClient.post(`${environment.API_URL}/authenticate`, userInfo, {responseType: 'text'});
   }
 
+  getRole() {
+    return this.httpClient.get<any>(`${environment.API_URL}/getRole`);
+  }
+
 
 }

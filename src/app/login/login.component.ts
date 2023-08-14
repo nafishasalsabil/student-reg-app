@@ -29,7 +29,14 @@ import { LoginService } from './login.service';
         next: (data) => {  
             console.log("Yayyyy");
             localStorage.setItem('token',data);
-            this.router.navigate(["/students"]);
+            // this.loginService.getRole().subscribe({
+            //   next:(role)=>{
+            //     console.log(role);
+            //     this.router.navigate(["/students"]);
+                
+            //   }
+            // })
+            
             
          
         },

@@ -6,12 +6,34 @@
 
 .info-container {
     background-color: #f5f4ff;
-    border: 1px white;
+    font-size: 14px;
     border-radius: 20px;
-    padding: 25px;
+    padding: 20px;
     margin-bottom: 15px;
 }
 
-.stu{
+.stu {
     margin-left: 5px;
+}
+
+.btn {
+    background-color: #6460D1;
+    color: #fff;
+    transition: all .7s;
+}
+
+.em {
+    font-weight: 500;
+    color: #5c5a99;
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.m-2 {
+    font-size: 14px;
 }
