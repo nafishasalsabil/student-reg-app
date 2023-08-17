@@ -26,3 +26,9 @@ span{
 select{
     padding: 10px;
 }
+
+hr{
+    width: 100%;
+   color: #6460D1;
+   margin: 5px 0 10px 0; 
+}

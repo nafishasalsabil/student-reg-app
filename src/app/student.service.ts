@@ -52,4 +52,7 @@ export class StudentService {
   editStudent(id: any) {
     return id;
   }
+  getStudent(){
+    
+  }
 }

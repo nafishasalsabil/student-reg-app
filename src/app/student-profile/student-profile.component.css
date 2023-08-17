@@ -1,0 +1,22 @@
+.me{
+    align-items: center;
+}
+img{
+    width: 200px;
+}
+/* h4{
+    text-align: center;
+} */
+
+hr{
+    color: #adaaeb;
+}
+
+.edit{
+   
+      
+        cursor: pointer;
+        width: 25px;
+         margin-top: 70px;
+     
+}

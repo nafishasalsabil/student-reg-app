@@ -4,17 +4,17 @@
             <!-- <img class="m-2" src="assets/add.png" routerLink="/register" style="width: 25px; float:right;"> -->
             <button class="btn m-2" type="button" routerLink="/register" style="float:right;">Add New Students</button>
         </h2>
-        <hr style="color: #807dd7;" />
+        <hr style="color: #b8b6e7;" />
     </div>
     <div class="info-container" *ngFor="let student of studentList; let i=index;">
         <!-- Student Info -->
 
         <div class="row" style="margin-bottom: 10px;">
             <div class="col">
-                <img src="assets/graduate.png" style="width: 70px;">
-                <img class="m-2" src="assets/trash.png" style="width: 24px; float: right;"
+                <img src="assets/images/graduate.png" style="width: 70px;">
+                <img class="m-2" src="assets/images/trashcan.png" style="width: 24px; float: right;"
                     (click)="deleteStudent(student.id)">
-                <img class="m-2" src="assets/pen.png" style="width: 25px; float: right;"
+                <img class="m-2" src="assets/images/pen-square.png" style="width: 25px; float: right;"
                     (click)="editStudent(student.id)">
             </div>
 
@@ -48,7 +48,7 @@
 
         <div class="row">
             <label style="margin-top: 10px; color: #4b497f;"><b>Secondary School Certificate</b></label>
-            <hr style="color: #6460D1;margin-bottom: 5px;" />
+            <!-- <hr style="color: #6460D1;margin-bottom: 5px;" /> -->
         </div>
         <div class="row row-cols-3">
             <div class="col" *ngFor="let res of student.ssc">
@@ -58,7 +58,7 @@
 
         <div class="row">
             <label style="margin-top: 10px; color: #4b497f;"><b>Higher Secondary School Certificate</b></label>
-            <hr style="color: #6460D1; margin-bottom: 5px;" />
+            <!-- <hr style="color: #6460D1; margin-bottom: 5px;" /> -->
         </div>
 
 

@@ -29,7 +29,6 @@ export class RegistrationComponent implements OnInit {
   students: Student[];
   student: Student;
   editmode: boolean;
-  sscSelected: Degree[];
   hscSelected: Degree[];
   studentId: any;
   constructor(
@@ -39,40 +38,65 @@ export class RegistrationComponent implements OnInit {
     private formbuilder: FormBuilder,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+    this.initRegistrationForm();
+  }
+
+
+    get sscFromControl(): FormArray {
+      return  this.signUpForm.get('ssc') as FormArray;
+    }
+
+    get formDataHSC() {
+      return <FormArray>this.signUpForm.get('hsc');
+    }
+
+
   ngOnInit(): void {
+
+    this.initRegistrationForm();
     
 
     this.activatedRoute.params.subscribe((params) => {
       this.studentId = params['id'];
+      if(!!this.studentId) {
+        this.registrationService.getStudentbyId(this.studentId).subscribe(
+          {
+            next:(response)=>{
+              this.editmode = true;
+              this.student = response;
+              this.initRegistrationForm(response);
+              console.log('getStudentbyId:: ', response);
+              
+            }
+          }
+        )
+      }
      
     });
-    this.registrationService.getStudentbyId(this.studentId).subscribe(
-      {
-        next:(response)=>{
-          this.editmode = true;
-          this.student = response;
-          console.log(response);
-        }
-      }
-    )
-    this.initRegistrationForm(this.student);
+
+    
+ /// DATA ???
+
+
     this.getGrades();
     this.getHscSubject();
     this.getSscSubject();
 
   }
 
-  initRegistrationForm(data:Student) {
+  initRegistrationForm(data?: Student) {
+    console.log("Form Value: ",data);
+    
     this.signUpForm = this.formbuilder.group({
-      firstName: [data? data.firstName:'', Validators.required],
-      lastName: [data? data.lastName:'', Validators.required],
-      email: [data? data.email:'', [Validators.required, Validators.email]],
-      dob: [data? data.dob:'', Validators.required],
+      firstName: [data?.firstName, Validators.required],
+      lastName: [data?.lastName, Validators.required],
+      email: [data?.email, [Validators.required, Validators.email]],
+      dob: [data?.dob, Validators.required],
       board: [data? data.board:'', Validators.required],
-      contact: [data? data.contact:'', Validators.required],
-      address: [data? data.address:'', Validators.required],
-      password: [data? data.password:'', Validators.required],
+      contact: [data?.contact, Validators.required],
+      address: [data?.address, Validators.required],
+      
       ssc: this.formbuilder.array([]),
       hsc: this.formbuilder.array([]),
       // ssc: this.formbuilder.array([
@@ -90,27 +114,45 @@ export class RegistrationComponent implements OnInit {
     });
 
     
-    this.sscSelected = data? data.ssc:[{subject:'',gpa:''}];
-    this.hscSelected = data? data.hsc:[{subject:'',gpa:''}];
-    const sscFormArray = this.signUpForm.get('ssc') as FormArray;
-    const hscFormArray = this.signUpForm.get('hsc') as FormArray;
+  
+    // const hscFormArray = this.signUpForm.get('hsc') as FormArray;
 
-    this.sscSelected.forEach((item) => {
+
+  if(data?.ssc?.length) {
+    data.ssc.forEach((item) => {
       const sscFormGroup = this.formbuilder.group({
-        subject: [item? item.subject:'', Validators.required],
-        gpa: [item? item.gpa:'', Validators.required],
+        subject: [item?.subject, Validators.required],
+        gpa: [item?.gpa, Validators.required],
       });
 
-      sscFormArray.push(sscFormGroup);
+      this.sscFromControl.push(sscFormGroup);
     });
+  } else {
+    this.onAddSubjectOfSSC()
+  }
 
-    this.hscSelected.forEach((item) => {
+  if(data?.hsc?.length) {
+    data.hsc.forEach((item) => {
       const hscFormGroup = this.formbuilder.group({
-        subject: [item? item.subject:'', Validators.required],
-        gpa: [item? item.gpa:'', Validators.required],
+        subject: [item?.subject, Validators.required],
+        gpa: [item?.gpa, Validators.required],
       });
-      hscFormArray.push(hscFormGroup);
+
+      this.formDataHSC.push(hscFormGroup);
     });
+  } else {
+    this.onAddSubjectOfHSC()
+  }
+
+
+
+    // this.hscSelected.forEach((item) => {
+    //   const hscFormGroup = this.formbuilder.group({
+    //     subject: [item? item.subject:'', Validators.required],
+    //     gpa: [item? item.gpa:'', Validators.required],
+    //   });
+    //   hscFormArray.push(hscFormGroup);
+    // });
   
 
   }
@@ -160,7 +202,7 @@ export class RegistrationComponent implements OnInit {
   // }
   onSubmit() {
     this.submitted = true;
-    console.log('onsubmit');
+    console.log(this.signUpForm.valid, this.signUpForm.value);
 
     if (this.editmode) {
       this.registrationService
@@ -168,7 +210,12 @@ export class RegistrationComponent implements OnInit {
         .subscribe({
           next: (data) => {
             console.log(data);
-            this.router.navigate(['/students']);
+            if(localStorage.getItem('role')=='Admin'){
+              this.router.navigate(['/students']);
+            }else{
+              this.router.navigate([`/profile/${this.student.id}`]);
+            }
+            
           },
         });
     } else {
@@ -193,8 +240,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   onAddSubjectOfSSC() {
-    const control = <FormArray>this.signUpForm.controls['ssc'];
-    control.push(
+    this.sscFromControl.push(
       this.formbuilder.group({
         subject: ['', Validators.required],
         gpa: ['', Validators.required],
@@ -215,18 +261,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   removeSSC(index: any) {
-    const control = <FormArray>this.signUpForm.controls['ssc'];
-    control.removeAt(index);
+    this.sscFromControl.removeAt(index);
   }
   removeHSC(index: any) {
     const control = <FormArray>this.signUpForm.controls['hsc'];
     control.removeAt(index);
   }
 
-  get formDataSSC() {
-    return <FormArray>this.signUpForm.get('ssc');
-  }
-  get formDataHSC() {
-    return <FormArray>this.signUpForm.get('hsc');
-  }
+
 }

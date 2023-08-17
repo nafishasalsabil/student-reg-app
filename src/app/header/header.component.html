@@ -1,22 +1,22 @@
 <nav class="navbar navbar-light">
   <div class="container-fluid">
     <a class="navbar-brand">
-      <img src="assets/graduation.png" style="width: 45px;">
+      <img src="assets/images/graduation.png" style="width: 45px;">
       <!-- <span class="h5 fw-bold">MySchool</span> -->
       MySchool
     </a>
     <form class="d-flex">
-      <button class="btn " type="submit" style="margin-right: 5px" routerLinkActive="active" routerLink="/login"
-        *ngIf="showLogin">Login</button>
+      <!-- <button class="btn " type="submit" style="margin-right: 5px" routerLinkActive="active" routerLink="/login"
+        *ngIf="!loggedIn">Login</button> -->
 
-      <button class="btn " type="submit" style="margin-right: 5px" routerLinkActive="active" routerLink="/register"
-        *ngIf="showReg">Register</button>
+      <!-- <button class="btn " type="submit" style="margin-right: 5px" routerLinkActive="active" routerLink="/register"
+        *ngIf="loggedIn">Register</button> -->
 
 
-      <button class="btn" type="submit" style="margin-right: 5px" routerLinkActive="active" routerLink="/students"
-        *ngIf="loggedIn">Dashboard</button>
+      <!-- <button class="btn" type="submit" style="margin-right: 5px" *ngIf="loggedIn && admin" routerLinkActive="active" routerLink="/students"
+        >Dashboard</button> -->
 
-      <button class="btn" type="submit" routerLinkActive="active" *ngIf="loggedIn" (click)="logout()">LogOut</button>
+      <button class="btn" type="submit"  *ngIf="loggedIn" (click)="logout()">LogOut</button>
     </form>
   </div>
 </nav>
