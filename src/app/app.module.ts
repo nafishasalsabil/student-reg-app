@@ -13,13 +13,13 @@ import { LoginInterceptor } from './login/login.interceptor';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { LoginModule } from './login/login.module';
 import { RegistrationModule } from './registration/registration.module';
+import { StudentProfileModule } from './student-profile/student-profile.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     StudentsComponent,
-    StudentProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +29,7 @@ import { RegistrationModule } from './registration/registration.module';
     FormsModule,
     LoginModule,
     RegistrationModule,
+    StudentProfileModule
   ],
   providers: [
     StudentService,

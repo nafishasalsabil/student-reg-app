@@ -7,12 +7,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: RegistrationComponent
-  }
+    component: RegistrationComponent,
+  },
 ];
 @NgModule({
   declarations: [RegistrationComponent],
@@ -23,7 +22,6 @@ const routes: Routes = [
     HttpClientModule,
     CommonModule,
     RouterModule.forChild(routes),
-
   ],
 })
 export class RegistrationModule {}

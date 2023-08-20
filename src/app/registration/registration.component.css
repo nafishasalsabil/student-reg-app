@@ -1,34 +1,36 @@
-.btn{
+.btn {
     width: 100%;
-    background-color: #6460D1; 
+    background-color: #6460D1;
     color: white;
 }
 
 input.ng-invalid.ng-touched {
     border: 1px solid red;
-  }
-.col-md-1 img{
+}
+
+.col-md-1 img {
     width: 25px;
     margin-top: 5px;
 }
-.m-2{
-    width: 25px; 
+
+.m-2 {
+    width: 25px;
 }
 
-label{
+label {
     margin-top: 0px;
 }
 
-span{
+span {
     color: red;
 }
 
-select{
+select {
     padding: 10px;
 }
 
-hr{
+hr {
     width: 100%;
-   color: #6460D1;
-   margin: 5px 0 10px 0; 
+    color: #6460D1;
+    margin: 5px 0 10px 0;
 }

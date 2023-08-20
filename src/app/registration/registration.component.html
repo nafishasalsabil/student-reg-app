@@ -5,44 +5,42 @@
       <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
 
         <h2>{{editmode?'Edit Student' : 'Student Information'}}
-          <button class="btn" routerLink="/students" style="float: right; width: 10%; background-color: white;color:#6460D1;font-weight:600; margin-top: 10px;">
+          <button class="btn" routerLink="/students"
+            style="float: right; width: 10%; background-color: white;color:#6460D1;font-weight:600; margin-top: 10px;">
             Back
             <img src="assets/images/left.png" style="width: 15px;">
-          </button>     
+          </button>
         </h2>
-        <hr/>
-        <div class="row g-3">    
+        <hr />
+        <div class="row g-3">
           <div class="col-md-6">
             <label for="firstName" class="form-label">First Name
-              <span *ngIf="!signUpForm.get('firstName')?.valid && signUpForm.get('firstName')?.touched"
-                >*</span></label>
+              <span *ngIf="!signUpForm.get('firstName')?.valid && signUpForm.get('firstName')?.touched">*</span></label>
             <input type="text" class="form-control" id="firstName" placeholder="Enter first name"
               formControlName="firstName">
           </div>
 
           <div class="col-md-6">
             <label for="lastName" class="form-label">Last Name</label>
-            <span *ngIf="!signUpForm.get('lastName')?.valid && signUpForm.get('lastName')?.touched"
-              >*</span>
+            <span *ngIf="!signUpForm.get('lastName')?.valid && signUpForm.get('lastName')?.touched">*</span>
             <input type="text" class="form-control" id="lastName" placeholder="Enter last name"
               formControlName="lastName">
           </div>
           <div class="col-md-12">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" placeholder="Enter your e-mail" formControlName="email">
-            <span *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched" class="help-block"
-              >Please enter a valid email!</span>
+            <span *ngIf="!signUpForm.get('email')?.valid && signUpForm.get('email')?.touched" class="help-block">Please
+              enter a valid email!</span>
           </div>
           <div class="col-md-12">
             <label for="dob" class="form-label"> Date of Birth
-              <span *ngIf="!signUpForm.get('dob')?.valid && signUpForm.get('dob')?.touched" >*</span>
+              <span *ngIf="!signUpForm.get('dob')?.valid && signUpForm.get('dob')?.touched">*</span>
             </label>
             <input type="date" class="form-control" id="dob" formControlName="dob">
           </div>
           <div class="col-md-12">
             <label for="board" class="form-label">Board
-              <span *ngIf="!signUpForm.get('board')?.valid && signUpForm.get('board')?.touched"
-                >*</span>
+              <span *ngIf="!signUpForm.get('board')?.valid && signUpForm.get('board')?.touched">*</span>
             </label>
             <select class="form-control" id="board" formControlName="board">
               <option value="">-- Select Board -- </option>
@@ -70,8 +68,7 @@
 
           <div class="col-md-6">
             <label for="address" class="form-label"> Address
-              <span *ngIf="!signUpForm.get('address')?.valid && signUpForm.get('address')?.touched"
-                >*</span>
+              <span *ngIf="!signUpForm.get('address')?.valid && signUpForm.get('address')?.touched">*</span>
             </label>
 
             <input type="text" class="form-control" id="address" formControlName="address"
@@ -80,8 +77,7 @@
 
           <div class="col-md-12" *ngIf="!editmode">
             <label for="password" class="form-label"> Password
-              <span *ngIf="!signUpForm.get('password')?.valid && signUpForm.get('password')?.touched"
-                >*</span>
+              <span *ngIf="!signUpForm.get('password')?.valid && signUpForm.get('password')?.touched">*</span>
             </label>
 
             <input type="password" class="form-control" id="password" formControlName="password"
@@ -93,11 +89,11 @@
               <label class="m-2">SSC</label>
               <img class="m-2" src="assets/images/add.png" (click)="onAddSubjectOfSSC()">
             </div>
-            <div class="form-group" *ngFor="let sscControl of sscFromControl.controls; let i=index" formGroupName="{{i}}">
+            <div class="form-group" *ngFor="let sscControl of sscFromControl.controls; let i=index"
+              formGroupName="{{i}}">
               <div class="row" style="padding: 5px;">
                 <div class="col-md-6">
-                  <select class="form-control" formControlName="subject" id="{{i}}" #subject
-                    >
+                  <select class="form-control" formControlName="subject" id="{{i}}" #subject>
                     <option value="">-- Select Subject -- </option>
                     <option *ngFor="let sscSub of sscSubjects; let i=index" value="{{sscSub}}">
                       {{sscSub}}
@@ -114,9 +110,9 @@
                   </select>
                 </div>
                 <div class="col-md-1">
-                  <img src="assets/images/cross-circle.png"(click)="removeSSC(i)">
+                  <img src="assets/images/cross-circle.png" (click)="removeSSC(i)">
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -126,10 +122,10 @@
           <div formArrayName="hsc">
             <div class="d-flex main justify-content-between">
               <label class="m-2">HSC</label>
-              <img class="m-2" src="assets/images/add.png"(click)="onAddSubjectOfHSC()">
+              <img class="m-2" src="assets/images/add.png" (click)="onAddSubjectOfHSC()">
             </div>
             <div class="form-group" *ngFor="let hscControl of formDataHSC.controls; let i=index" formGroupName="{{i}}">
-              <div class="row" style="padding: 5px;" >
+              <div class="row" style="padding: 5px;">
 
                 <div class="col-md-6">
                   <select class="form-control" formControlName="subject">
@@ -160,8 +156,8 @@
           <div class="col-12">
             <div class="row">
               <div class="col-12">
-                <button type="submit" class="btn w-100 fw-bold" [disabled]="!signUpForm.valid"
-                 >{{editmode?'Update' : 'Register'}}</button>
+                <button type="submit" class="btn w-100 fw-bold" [disabled]="!signUpForm.valid">{{editmode?'Update' :
+                  'Register'}}</button>
               </div>
             </div>
           </div>

@@ -3,17 +3,17 @@
         <div class="col" style="width: 300px;">
             <img src="assets/images/graduate.png" style="width: 150px; object-fit: cover;">
             <img class="edit" src="assets/images/profile-edit.png" (click)="editStudent(studentInfo.id)">
-          </div>
+        </div>
     </div>
     <div class="row">
         <div class="col">
             <h2>{{studentInfo? studentInfo.firstName:''}} {{studentInfo? studentInfo.lastName:''}}</h2>
-          </div>
+        </div>
     </div>
     <div class="row">
         <div class="col">
             <h5>{{studentInfo? studentInfo.email:''}}</h5>
-          </div>
+        </div>
     </div>
     <!-- <hr/> -->
     <div class="row row-cols-4">
@@ -35,23 +35,24 @@
         </div>
     </div>
 
-    <hr/>
+    <hr />
     <h5>My Results</h5>
+    <hr style="color: white;" />
     <h6>Secondary School Certificate</h6>
     <div class="row row-cols-4">
-        
+
         <div class="col" *ngFor="let res of studentInfo?.ssc">
             {{res? res.subject:''}} : {{res? res.gpa:''}}
         </div>
-        
+
     </div>
-    <hr style="color: white;"/>
+    <hr style="color: white;" />
     <h6>Higher Secondary School Certificate</h6>
     <div class="row row-cols-4">
-        
+
         <div class="col" *ngFor="let res of studentInfo?.hsc">
             {{res? res.subject:''}} : {{res? res.gpa:''}}
         </div>
-        
+
     </div>
 </div>

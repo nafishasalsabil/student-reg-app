@@ -42,61 +42,50 @@ export class RegistrationComponent implements OnInit {
     this.initRegistrationForm();
   }
 
+  get sscFromControl(): FormArray {
+    return this.signUpForm.get('ssc') as FormArray;
+  }
 
-    get sscFromControl(): FormArray {
-      return  this.signUpForm.get('ssc') as FormArray;
-    }
-
-    get formDataHSC() {
-      return <FormArray>this.signUpForm.get('hsc');
-    }
-
+  get formDataHSC() {
+    return <FormArray>this.signUpForm.get('hsc');
+  }
 
   ngOnInit(): void {
-
     this.initRegistrationForm();
-    
 
     this.activatedRoute.params.subscribe((params) => {
       this.studentId = params['id'];
-      if(!!this.studentId) {
-        this.registrationService.getStudentbyId(this.studentId).subscribe(
-          {
-            next:(response)=>{
-              this.editmode = true;
-              this.student = response;
-              this.initRegistrationForm(response);
-              console.log('getStudentbyId:: ', response);
-              
-            }
-          }
-        )
+      if (!!this.studentId) {
+        this.registrationService.getStudentbyId(this.studentId).subscribe({
+          next: (response) => {
+            this.editmode = true;
+            this.student = response;
+            this.initRegistrationForm(response);
+            console.log('getStudentbyId:: ', response);
+          },
+        });
       }
-     
     });
 
-    
- /// DATA ???
-
+    /// DATA ???
 
     this.getGrades();
     this.getHscSubject();
     this.getSscSubject();
-
   }
 
   initRegistrationForm(data?: Student) {
-    console.log("Form Value: ",data);
-    
+    console.log('Form Value: ', data);
+
     this.signUpForm = this.formbuilder.group({
       firstName: [data?.firstName, Validators.required],
       lastName: [data?.lastName, Validators.required],
       email: [data?.email, [Validators.required, Validators.email]],
       dob: [data?.dob, Validators.required],
-      board: [data? data.board:'', Validators.required],
+      board: [data ? data.board : '', Validators.required],
       contact: [data?.contact, Validators.required],
       address: [data?.address, Validators.required],
-      
+
       ssc: this.formbuilder.array([]),
       hsc: this.formbuilder.array([]),
       // ssc: this.formbuilder.array([
@@ -113,38 +102,33 @@ export class RegistrationComponent implements OnInit {
       // ]),
     });
 
-    
-  
     // const hscFormArray = this.signUpForm.get('hsc') as FormArray;
 
+    if (data?.ssc?.length) {
+      data.ssc.forEach((item) => {
+        const sscFormGroup = this.formbuilder.group({
+          subject: [item?.subject, Validators.required],
+          gpa: [item?.gpa, Validators.required],
+        });
 
-  if(data?.ssc?.length) {
-    data.ssc.forEach((item) => {
-      const sscFormGroup = this.formbuilder.group({
-        subject: [item?.subject, Validators.required],
-        gpa: [item?.gpa, Validators.required],
+        this.sscFromControl.push(sscFormGroup);
       });
+    } else {
+      this.onAddSubjectOfSSC();
+    }
 
-      this.sscFromControl.push(sscFormGroup);
-    });
-  } else {
-    this.onAddSubjectOfSSC()
-  }
+    if (data?.hsc?.length) {
+      data.hsc.forEach((item) => {
+        const hscFormGroup = this.formbuilder.group({
+          subject: [item?.subject, Validators.required],
+          gpa: [item?.gpa, Validators.required],
+        });
 
-  if(data?.hsc?.length) {
-    data.hsc.forEach((item) => {
-      const hscFormGroup = this.formbuilder.group({
-        subject: [item?.subject, Validators.required],
-        gpa: [item?.gpa, Validators.required],
+        this.formDataHSC.push(hscFormGroup);
       });
-
-      this.formDataHSC.push(hscFormGroup);
-    });
-  } else {
-    this.onAddSubjectOfHSC()
-  }
-
-
+    } else {
+      this.onAddSubjectOfHSC();
+    }
 
     // this.hscSelected.forEach((item) => {
     //   const hscFormGroup = this.formbuilder.group({
@@ -153,8 +137,6 @@ export class RegistrationComponent implements OnInit {
     //   });
     //   hscFormArray.push(hscFormGroup);
     // });
-  
-
   }
 
   getGrades() {
@@ -184,7 +166,6 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-
   // selectedSSCSub = '';
   //onSelected(value: string, index: any): void {
   //   this.selectedSSCSub = value;
@@ -210,12 +191,11 @@ export class RegistrationComponent implements OnInit {
         .subscribe({
           next: (data) => {
             console.log(data);
-            if(localStorage.getItem('role')=='Admin'){
+            if (localStorage.getItem('role') == 'Admin') {
               this.router.navigate(['/students']);
-            }else{
+            } else {
               this.router.navigate([`/profile/${this.student.id}`]);
             }
-            
           },
         });
     } else {
@@ -267,6 +247,4 @@ export class RegistrationComponent implements OnInit {
     const control = <FormArray>this.signUpForm.controls['hsc'];
     control.removeAt(index);
   }
-
-
 }

@@ -36,14 +36,12 @@ export class LoginComponent implements OnInit {
 
             if (this.user[0].authority == 'Admin') {
               this.router.navigate(['/students']);
-              
             } else if (this.user[0].authority == 'Student') {
               this.loginService.getId().subscribe({
                 next: (id) => {
                   console.log(id);
                   // localStorage.setItem('role', this.user[0].authority);
                   this.router.navigate([`/profile/${id}`]);
-                 
                 },
               });
             }

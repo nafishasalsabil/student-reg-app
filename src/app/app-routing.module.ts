@@ -23,7 +23,14 @@ const routes: Routes = [
       ),
   },
   { path: 'edit/:id', component: RegistrationComponent },
-  { path: 'profile/:id', component: StudentProfileComponent },
+
+  {
+    path: 'profile/:id',
+    loadChildren: () =>
+      import('../app/student-profile/student-profile.module').then(
+        (m) => m.StudentProfileModule
+      ),
+  },
 ];
 
 @NgModule({

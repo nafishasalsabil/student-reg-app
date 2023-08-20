@@ -1,7 +1,7 @@
-import { EventEmitter, Injectable, TemplateRef } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from "environments/environment";
-import { LoginInterceptor } from "./login.interceptor";
+import { EventEmitter, Injectable, TemplateRef } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'environments/environment';
+import { LoginInterceptor } from './login.interceptor';
 
 @Injectable()
 export class LoginService {
@@ -11,16 +11,20 @@ export class LoginService {
   constructor(private httpClient: HttpClient) {}
 
   loginUser(userInfo: any) {
-    return this.httpClient.post(`${environment.API_URL}/authenticate`, userInfo, {responseType: 'text'});
+    return this.httpClient.post(
+      `${environment.API_URL}/authenticate`,
+      userInfo,
+      { responseType: 'text' }
+    );
   }
 
-  getRole(token:any) {
+  getRole(token: any) {
     return this.httpClient.get(`${environment.API_URL}/getRole`);
   }
-  getId(){
+  getId() {
     return this.httpClient.get(`${environment.API_URL}/getId`);
   }
-  setLogin(role:any){
+  setLogin(role: any) {
     this.isLoggedIn = true;
     this.role = role;
     this.loginStatusChanged.emit(true);
@@ -31,6 +35,4 @@ export class LoginService {
   getRoleStatus() {
     return this.role;
   }
-
-
 }

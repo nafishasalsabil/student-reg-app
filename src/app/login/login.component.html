@@ -23,19 +23,18 @@
 
           <div class="form-outline mb-3">
             <input type="password" id="password" class="form-control form-control-lg" placeholder="Enter your password"
-              ngModel name="password" required #password="ngModel"/>
+              ngModel name="password" required #password="ngModel" />
             <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a valid
               password!</span>
           </div>
 
           <div class="d-grid gap-2">
 
-            <button class="btn" type="submit" [disabled]="f.invalid"
-              >Sign In</button>
-              <span class="help-block" *ngIf="show" >Please enter a valid
-                email or mobile number!</span>
+            <button class="btn" type="submit" [disabled]="f.invalid">Sign In</button>
+            <span class="help-block" *ngIf="show">Please enter a valid
+              email or mobile number!</span>
           </div>
-        
+
         </form>
       </div>
     </div>
