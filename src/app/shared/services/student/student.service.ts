@@ -2,8 +2,8 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { Degree } from './shared/degree.model';
-import { Student } from './shared/student.model';
+import { Degree } from '../../models/degree.model';
+import { Student } from '../../models/student.model';
 import { environment } from 'environments/environment';
 @Injectable()
 export class StudentService {

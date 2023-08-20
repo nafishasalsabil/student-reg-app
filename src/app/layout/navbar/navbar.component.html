@@ -5,7 +5,6 @@
       <!-- <span class="h5 fw-bold">MySchool</span> -->
       MySchool
     </a>
-    <form class="d-flex">
       <!-- <button class="btn " type="submit" style="margin-right: 5px" routerLinkActive="active" routerLink="/login"
         *ngIf="!loggedIn">Login</button> -->
 
@@ -15,9 +14,8 @@
 
       <!-- <button class="btn" type="submit" style="margin-right: 5px" *ngIf="loggedIn && admin" routerLinkActive="active" routerLink="/students"
         >Dashboard</button> -->
-
       <button class="btn" type="submit" *ngIf="loggedIn" (click)="logout()">LogOut</button>
-    </form>
+ 
   </div>
 </nav>
 

@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable, TemplateRef } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'environments/environment';
-import { LoginInterceptor } from './login.interceptor';
+import { LoginInterceptor } from '../../interceptor/login.interceptor';
 
 @Injectable()
 export class LoginService {

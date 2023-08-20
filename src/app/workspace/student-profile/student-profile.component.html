@@ -19,7 +19,8 @@
     <div class="row row-cols-4">
         <div class="col">
             <img src="assets/images/dob.png" style="width: 15px;margin-bottom: 2px;">
-            {{studentInfo? studentInfo.dob:''}}
+            {{studentInfo? formatDate(studentInfo.dob) : '' }}
+
         </div>
         <div class="col">
             <img src="assets/images/call.png" style="width: 15px;">
@@ -36,7 +37,7 @@
     </div>
 
     <hr />
-    <h5>My Results</h5>
+    <h4>My Results</h4>
     <hr style="color: white;" />
     <h6>Secondary School Certificate</h6>
     <div class="row row-cols-4">

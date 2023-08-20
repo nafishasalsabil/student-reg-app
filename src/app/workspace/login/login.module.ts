@@ -3,6 +3,7 @@ import { LoginComponent } from "./login.component";
 import { FormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
+import { LoaderComponent } from "src/app/shared/components/loader/loader.component";
 const routes: Routes = [
     {
       path: '',
@@ -11,10 +12,12 @@ const routes: Routes = [
   ];
 @NgModule({
     declarations:[
-        LoginComponent
+        LoginComponent,
+        LoaderComponent
     ],
     exports:[
-        LoginComponent
+        LoginComponent,
+        LoaderComponent
     ],
     imports:[
         FormsModule,

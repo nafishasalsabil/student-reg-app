@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentService } from '../student.service';
+import { StudentService } from '../../shared/services/student/student.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { LoginService } from '../login/login.service';
+import { LoginService } from '../../workspace/login/login.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   showLogin: boolean;
   showReg: boolean;
   admin: boolean;

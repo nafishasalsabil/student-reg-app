@@ -7,17 +7,17 @@ import {
   NgForm,
   Validators,
 } from '@angular/forms';
-import { Student } from '../shared/student.model';
-import { StudentService } from '../student.service';
+import { Student } from '../../shared/models/student.model';
+import { StudentService } from '../../shared/services/student/student.service';
 import { HttpClient } from '@angular/common/http';
 import { RegistrationService } from './registration.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Degree } from '../shared/degree.model';
+import { Degree } from '../../shared/models/degree.model';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css'],
+  styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
   signUpForm: FormGroup;

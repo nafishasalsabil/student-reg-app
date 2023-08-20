@@ -6,7 +6,7 @@ import { LoginService } from './login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   show: boolean;
   autohide = true;
   user: any;
+  isLoading:boolean;
 
   constructor(private router: Router, private loginService: LoginService) {}
   ngOnInit(): void {
@@ -23,13 +24,14 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log('Hello');
-
+    this.isLoading = true;
     this.loginService.loginUser(this.loginForm.value).subscribe({
       next: (data) => {
         localStorage.setItem('token', data);
         this.loginService.getRole(data).subscribe({
           next: (role) => {
             this.user = role;
+            this.isLoading = false;
             // console.log(this.user[0].authority);
             localStorage.setItem('role', this.user[0].authority);
             this.loginService.setLogin(this.user[0].authority);
